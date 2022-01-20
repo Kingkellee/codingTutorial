@@ -1,6 +1,4 @@
 // How to read and write file-Asynchronous Approach
-
-const { clear } = require('console')
 const {readFile, writeFile, read} = require('fs')
 
 // the readFile takes in as argument a path and a call back funnction
