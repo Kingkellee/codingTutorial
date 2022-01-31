@@ -13,6 +13,14 @@ querystring library when false or with the qs library when true */
 
 app.use(express.json()) //parce json
 //get method used to read data 
+app.post('/login', (req, res)=>{
+    const {name} = req.body
+    if (name) {
+        res.status(200).send(`You are Logged in, welcome ${name}!!`)
+    }
+    res.status(401).send("Please input the correct Credentials")
+})
+
 app.get('/api/people', (req, res)=>{
     res.status(200).json({success: true, data:people})
 })
@@ -29,7 +37,7 @@ app.post('/api/people', (req, res)=>{
     res.status(201).send({success:true, person:name})
 })
 
-app.post('/api/postman/people', (req, res)=>{
+app.post('/api/people/postman', (req, res)=>{
     const {name} = req.body
 
     if(!name) {
@@ -38,14 +46,6 @@ app.post('/api/postman/people', (req, res)=>{
             .json({success:false, msg:'please provide a value'})
     }
     res.status(201).send({success:true, data:[...people, name]})
-})
-
-app.post('/login', (req, res)=>{
-    const {name} = req.body
-    if (name) {
-        res.status(200).send(`You are Logged in, welcome ${name}!!`)
-    }
-    res.status(401).send("Please input the correct Credentials")
 })
 
 app.put('/api/people/:id', (req, res)=>{
